@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gsxy.core.mapper.UserMapper">
+
+    <insert id="insert">
+        insert into
+        users(username,password,created_time,updated_time)
+        values(#{username},#{password},#{createdTime},#{updatedTime})
+    </insert>
+
+    <update id="update">
+        update
+        users
+        <set>
+            <if test="username != null">
+                username = #{username},
+            </if>
+            <if test="password != null">
+                password = #{password},
+            </if>
+            <if test="role != null">
+                role = #{role},
+            </if>
+            <if test="email != null">
+                email = #{email},
+            </if>
+            <if test="phone != null">
+                phone = #{phone},
+            </if>
+            <if test="address != null">
+                address = #{address},
+            </if>
+            <if test="updatedTime != null">
+                updated_time = #{updatedTime},
+            </if>
+        </set>
+        where
+            id = #{id}
+        limit 1
+    </update>
+
+</mapper>
