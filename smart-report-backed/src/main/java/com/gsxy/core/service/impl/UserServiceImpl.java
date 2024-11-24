@@ -1,7 +1,6 @@
 package com.gsxy.core.service.impl;
 
 import com.gsxy.core.mapper.UserMapper;
-import com.gsxy.core.pojo.Users;
 import com.gsxy.core.pojo.bo.UserLoginBo;
 import com.gsxy.core.pojo.bo.UserRegBo;
 import com.gsxy.core.pojo.enums.CodeValues;

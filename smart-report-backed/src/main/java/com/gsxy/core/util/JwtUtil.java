@@ -1,7 +1,6 @@
 package com.gsxy.core.util;
 
 
-import com.gsxy.core.pojo.Users;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
