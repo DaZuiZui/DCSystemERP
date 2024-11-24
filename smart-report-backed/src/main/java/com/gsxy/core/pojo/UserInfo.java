@@ -14,7 +14,7 @@ public class UserInfo implements Serializable {
 /**
      * 关联user学号id
      */
-    private String id;
+    private Long id;
 /**
      * 姓名
      */
