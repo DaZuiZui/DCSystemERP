@@ -1,5 +1,6 @@
 package com.gsxy.core.service.impl;
 
+import cn.hutool.core.lang.Console;
 import com.gsxy.core.mapper.UserMapper;
 import com.gsxy.core.pojo.Users;
 import com.gsxy.core.pojo.bo.UserLoginBo;
@@ -12,6 +13,7 @@ import com.gsxy.core.pojo.vo.UserVo;
 import com.gsxy.core.service.UserService;
 import com.gsxy.core.util.JwtUtil;
 import com.gsxy.core.util.LoginUtils;
+import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,8 +24,8 @@ import java.util.List;
 import static com.gsxy.core.pojo.enums.CodeValues.SUCCESS_CODE;
 import static com.gsxy.core.pojo.enums.MessageValues.SUCCESS_MESSAGE;
 
-@Slf4j
 @Service
+@Log4j
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -32,7 +34,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseVo userReg(UserRegBo userRegBo) {
-        log.info("注册信息:{}", userRegBo);
+        Console.log("注册信息:{}", userRegBo);
 
         Users user = userMapper.selectByUsername(userRegBo.getUsername());
         if (user != null) {
@@ -58,7 +60,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseVo userLogin(UserLoginBo userLoginBo) {
-        log.info("登录信息:{}", userLoginBo);
+        Console.log("登录信息:{}", userLoginBo);
         Users user = userMapper.selectByUsername(userLoginBo.getUsername());
         if (user == null) {
             return ResponseVo.builder()

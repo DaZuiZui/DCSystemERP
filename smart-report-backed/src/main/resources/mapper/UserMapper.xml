@@ -7,7 +7,7 @@
     <insert id="insert">
         insert into
         user(username,password,create_time,update_time)
-        values(#{username},#{password},#{createdTime},#{updatedTime})
+        values(#{username},#{password},#{createTime},#{updateTime})
     </insert>
 
     <select id="queryPageUser" resultType="com.gsxy.core.pojo.vo.UserVo">
