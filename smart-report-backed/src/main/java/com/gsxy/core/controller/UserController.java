@@ -2,6 +2,7 @@ package com.gsxy.core.controller;
 
 import com.alibaba.fastjson2.JSONArray;
 import com.gsxy.core.pojo.bo.UserLoginBo;
+import com.gsxy.core.pojo.bo.UserPageBo;
 import com.gsxy.core.pojo.bo.UserRegBo;
 import com.gsxy.core.pojo.vo.ResponseVo;
 import com.gsxy.core.service.UserService;
@@ -71,10 +72,10 @@ public class UserController {
      *      分页查询用户列表
      * @return
      */
-    @GetMapping("/queryPageUser/{page}/{limit}")
+    @PostMapping("/queryPageUser")
     @ApiOperation("分页查询用户列表")
-    public String queryPageUser(@PathVariable Long page,@PathVariable Long limit){
-        return JSONArray.toJSONString(userService.queryPageUser(page,limit));
+    public String queryPageUser(@RequestBody UserPageBo userPageBo){
+        return JSONArray.toJSONString(userService.queryPageUser(userPageBo));
     }
 
     /**

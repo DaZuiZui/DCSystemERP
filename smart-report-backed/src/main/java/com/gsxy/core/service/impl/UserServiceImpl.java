@@ -3,6 +3,7 @@ package com.gsxy.core.service.impl;
 import com.gsxy.core.mapper.UserMapper;
 import com.gsxy.core.pojo.Users;
 import com.gsxy.core.pojo.bo.UserLoginBo;
+import com.gsxy.core.pojo.bo.UserPageBo;
 import com.gsxy.core.pojo.bo.UserRegBo;
 import com.gsxy.core.pojo.enums.CodeValues;
 import com.gsxy.core.pojo.enums.MessageValues;
@@ -17,7 +18,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.gsxy.core.pojo.enums.CodeValues.SUCCESS_CODE;
 import static com.gsxy.core.pojo.enums.MessageValues.SUCCESS_MESSAGE;
@@ -91,11 +91,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseVo queryPageUser(Long page, Long limit) {
+    public ResponseVo queryPageUser(UserPageBo userPageBo) {
 
-        page = (page - 1) * limit;
-        List<UserVo> userVoList = userMapper.queryPageUser(page,limit);
-        Long count = userMapper.queryPageUserCount(page,limit);
+        userPageBo.setPage((userPageBo.getPage() - 1) * userPageBo.getLimit());
+        List<UserVo> userVoList = userMapper.queryPageUser(userPageBo);
+        Long count = userMapper.queryPageUserCount(userPageBo);
 
         return ResponseVo.builder()
                 .message(SUCCESS_MESSAGE)
