@@ -45,10 +45,18 @@ const cdn = {
 }
 
 module.exports = {
-
+    css: {
+        loaderOptions: {
+            postcss: {
+                plugins: [
+                    require('autoprefixer')()
+                ]
+            }
+        }
+    },
     lintOnSave: false, // 关闭eslint
     productionSourceMap: false,
-    publicPath: './', 
+    publicPath: './',
     outputDir: process.env.outputDir, // 生成文件的目录名称
     chainWebpack: config => {
 
@@ -75,7 +83,7 @@ module.exports = {
             }
             return args
         })
-        
+
         config
             .plugin('webpack-bundle-analyzer')
             .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin)
@@ -177,7 +185,7 @@ module.exports = {
                 ws: true,  // 默认为：true 是否支持webSocket
                 changeOrigin: false  // 默认为true 控制是否对请求的浏览器撒谎，请求头中host值，true时如果要访问的浏览器端口为66，则撒谎为自己是同ip端口为66的请求，false时转发时如实回答自己是代理服务器
             },
-        
+
             // 可以配置多个
             // 匹配所有/xxx开头的请求进行转发
             /*
