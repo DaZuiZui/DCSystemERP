@@ -10,5 +10,7 @@ public interface UserService {
 
     ResponseVo userLogin(UserLoginBo userLoginBo);
 
+    ResponseVo queryPageUser(Long page, Long limit);
+
     ResponseVo getProfiles();
 }

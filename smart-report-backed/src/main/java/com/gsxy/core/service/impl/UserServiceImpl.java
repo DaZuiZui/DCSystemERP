@@ -1,11 +1,13 @@
 package com.gsxy.core.service.impl;
 
 import com.gsxy.core.mapper.UserMapper;
+import com.gsxy.core.pojo.Users;
 import com.gsxy.core.pojo.bo.UserLoginBo;
 import com.gsxy.core.pojo.bo.UserRegBo;
 import com.gsxy.core.pojo.enums.CodeValues;
 import com.gsxy.core.pojo.enums.MessageValues;
 import com.gsxy.core.pojo.vo.ResponseVo;
+import com.gsxy.core.pojo.vo.UserVo;
 import com.gsxy.core.service.UserService;
 import com.gsxy.core.util.JwtUtil;
 import com.gsxy.core.util.LoginUtils;
@@ -14,6 +16,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static com.gsxy.core.pojo.enums.CodeValues.SUCCESS_CODE;
+import static com.gsxy.core.pojo.enums.MessageValues.SUCCESS_MESSAGE;
 
 @Slf4j
 @Service
@@ -38,8 +45,8 @@ public class UserServiceImpl implements UserService {
         userMapper.insert(Users.builder()
                 .password(userRegBo.getPassword())
                 .username(userRegBo.getUsername())
-                .createdTime(new Date())
-                .updatedTime(new Date())
+                .createTime(new Date())
+                .updateTime(new Date())
                 .build());
 
         return ResponseVo.builder()
@@ -64,14 +71,12 @@ public class UserServiceImpl implements UserService {
             return ResponseVo.builder()
                     .code(CodeValues.SUCCESS_CODE)
                     .message(MessageValues.SUCCESS_MESSAGE)
-                    .role(user.getRole())
                     .user(user)
                     .data(jwt)
                     .build();
         }
         return ResponseVo.builder()
                 .code(CodeValues.ERROR_CODE)
-                .role(user.getRole())
                 .message("密码错误")
                 .build();
     }
@@ -82,6 +87,21 @@ public class UserServiceImpl implements UserService {
                 .data(userMapper.queryById(LoginUtils.getLoginUserId()))
                 .code(CodeValues.SUCCESS_CODE)
                 .message(MessageValues.SUCCESS_MESSAGE)
+                .build();
+    }
+
+    @Override
+    public ResponseVo queryPageUser(Long page, Long limit) {
+
+        page = (page - 1) * limit;
+        List<UserVo> userVoList = userMapper.queryPageUser(page,limit);
+        Long count = userMapper.queryPageUserCount(page,limit);
+
+        return ResponseVo.builder()
+                .message(SUCCESS_MESSAGE)
+                .code(SUCCESS_CODE)
+                .data(userVoList)
+                .count(count)
                 .build();
     }
 
