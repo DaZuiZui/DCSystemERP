@@ -2,37 +2,30 @@
   <div>
     <el-row class="tac">
       <el-col :span="16">
-        <h5>默认颜色</h5>
+        <!-- <h5>DCSystemERP</h5> -->
         <el-menu class="el-menu-vertical-demo" router>
-          <template v-for="(route, index) in  propsValue ">
-            <!-- 如果没有子路由，使用 el-menu-item -->
-            <template v-if="!route.children">
-              <el-menu-item v-if="!route.meta.hidden" :key="route.path" :index="route.path">
-                <i :class="route.meta.icon"></i>
-                <span slot="title">{{ route.meta.title }}</span>
-              </el-menu-item>
-            </template>
-            <!-- 如果有子路由，且只有一个子路由使用，使用 el-menu-item -->
-            <!-- <template v-if="!route.children && route.children.length == 1">
-              <el-menu-item v-if="!route.children[0].meta.hidden" :key="route.children[0].path"
-                :index="route.children[0].path">
-                <i :class="route.children[0]meta.icon"></i>
-                <span slot="title">{{ route.children[0].meta.title }}</span>
-              </el-menu-item>
-            </template> -->
-
-
-            <!-- 如果有子路由，且多个子路由使用 el-submenu -->
-            <!-- <el-submenu-menu v-if="!route.children && route.children.length > 1" :key="route.children[0].path"
-              :index="route.path">
+          <template v-for="(route, index) in propsValue">
+            <!-- 无子路由 -->
+            <el-menu-item v-if="!route.children && !route.meta.hidden" :index="route.path">
               <i :class="route.meta.icon"></i>
-              <span slot="title">{{ route.meta.title }}</span>
+              {{ route.meta.title }}
+            </el-menu-item>
 
+            <!-- 单个子路由 -->
+            <el-menu-item v-else-if="route.children && route.children.length === 1 && !route.children[0].meta.hidden"
+              :index="route.children[0].path">
+              <i :class="route.children[0].meta.icon"></i>
+              {{ route.children[0].meta.title }}
+            </el-menu-item>
+
+            <!-- 多个子路由 -->
+            <el-submenu v-else-if="route.children && route.children.length > 1" :index="route.path">
+              <template slot="title">
+                <i :class="route.meta.icon"></i>
+                {{ route.meta.title }}
+              </template>
               <recursive-menu :routes="route.children" />
-            </el-submenu-menu> -->
-
-
-
+            </el-submenu>
           </template>
         </el-menu>
       </el-col>

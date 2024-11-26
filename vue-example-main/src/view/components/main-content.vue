@@ -48,16 +48,16 @@ export default {
     justify-content: center;
     width: 100%;
     height: 850px;
-    background-color: aqua;
+    /* background-color: aqua; */
 
     .Left_content {
         width: 14%;
-        background-color: pink;
+        /* background-color: pink; */
     }
 
     .Rright_content {
         width: 80%;
-        background-color: yellow;
+        /* background-color: yellow; */
     }
 
     /* el-card的样式 */

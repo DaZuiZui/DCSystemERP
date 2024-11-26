@@ -16,11 +16,33 @@ export const mainRouters =
       name: "home",
       component: resolve => (require(["@/view/HomeView"], resolve)),
       meta: {
-        title: '首页',
+        title: '导航栏',
         icon: 'el-icon-s-home',
         hidden: false,
       },
+      redirect: "authuser",
       children: [
+        {
+          path: "authuser",
+          name: "authuser",
+          component: resolve => (require(["@/view/components/main/AuthUser"], resolve)),
+          meta: {
+            title: '用户模块',
+            icon: 'el-icon-s-home',
+            hidden: false,
+          },
+        },
+        {
+          path: "channel",
+          name: "channel",
+          component: resolve => (require(["@/view/components/main/channel"], resolve)),
+          meta: {
+            title: '通道模块',
+            icon: 'el-icon-s-home',
+            hidden: false,
+          },
+        }
+
       ],
     },
     {
@@ -52,7 +74,7 @@ export const mainRouters =
       meta: {
         title: 'userindex',
         icon: 'el-icon-s-home',
-        hidden: false,
+        hidden: true,
       }
     }
   ]

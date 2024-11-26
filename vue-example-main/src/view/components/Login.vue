@@ -49,8 +49,11 @@
 </template>
 
 <script>
-// import {synRequestPost,synRequestGet} from "../../../../static/request"
-// import { login } from "@/api/user";
+// import Foot from '../frame/Foot.vue';
+// import Top  from '../frame/LoginTop.vue'
+import { synRequestPost, synRequestGet } from "../../../../static/request"
+import { login } from "@/api/user";
+import { setCookie } from "../../../../static/ZuiBlog/ZuiBlog";
 
 
 export default {
