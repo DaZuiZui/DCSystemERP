@@ -7,30 +7,28 @@
     <div id="app">
         Top
     </div>
-  </template>
-  
+</template>
+
 <script>
-    export default {
- 
+export default {
 
-        name: 'App',
 
-        data() {
-            return {
-        
-            }
-        },  
+    name: 'main-top',
 
-        mounted() {
-            console.log("用户的简历")
-            this.$emit('childEvent', "你好我给我的父组件值");
-        },
+    data() {
+        return {
 
-        methods: {
-
- 
         }
+    },
+
+    mounted() {
+        console.log("用户的简历")
+        this.$emit('childEvent', "你好我给我的父组件值");
+    },
+
+    methods: {
+
+
     }
+}
 </script>
-    
-  

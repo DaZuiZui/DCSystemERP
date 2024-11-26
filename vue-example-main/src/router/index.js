@@ -17,20 +17,43 @@ export const mainRouters =
       component: resolve => (require(["@/view/HomeView"], resolve)),
       meta: {
         title: '首页',
-        icon: 'el-icon-s-home'
+        icon: 'el-icon-s-home',
+        hidden: false,
       },
       children: [
       ],
     },
     {
+      path: '/RecursiveMenu',
+      name: 'RecursiveMenu',
+      component: resolve => (require(["@/view/components/fream/RecursiveMenu"], resolve)),
+      //每一个加上meta用于导航栏遍历避免报错
+      meta: {
+        title: '导航栏',
+        icon: 'el-icon-s-home',
+        // false为不显示,true为显示
+        hidden: true,
+      },
+    },
+    {
       path: '/HelloWorld',
       name: 'HelloWorld',
-      component: resolve => (require(["@/components/HelloWorld"], resolve))
+      component: resolve => (require(["@/components/HelloWorld"], resolve)),
+      meta: {
+        title: 'hello',
+        icon: 'el-icon-s-home',
+        hidden: true,
+      }
     },
     {
       path: '/userindex',
       name: 'userindex',
-      component: resolve => (require(["@/view/modules/user/index"], resolve))
+      component: resolve => (require(["@/view/modules/user/index"], resolve)),
+      meta: {
+        title: 'userindex',
+        icon: 'el-icon-s-home',
+        hidden: false,
+      }
     }
   ]
 

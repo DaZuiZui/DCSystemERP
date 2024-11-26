@@ -3,7 +3,7 @@
    @email: 1017850280@qq.com
 -->
 <template>
-    <div id="app">
+    <div>
         <div class="content">
 
             <div class="Left_content">
@@ -21,7 +21,7 @@ import RecursiveMenu from "@/view/components/fream/RecursiveMenu.vue";
 import router, { mainRouters } from '@/router/index.js';
 export default {
 
-    name: 'App',
+    name: 'main-content',
     components: {
         RecursiveMenu
     },
