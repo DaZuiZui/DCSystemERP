@@ -46,6 +46,30 @@ export const mainRouters =
       ],
     },
     {
+      path: '/Login',
+      name: 'Login',
+      component: resolve => (require(["@/view/components/Login"], resolve)),
+      //每一个加上meta用于导航栏遍历避免报错
+      meta: {
+        title: '登录页面',
+        icon: 'el-icon-s-home',
+        // false为显示,true为不显示
+        hidden: true,
+      },
+    },
+    {
+      path: '/UserReg',
+      name: 'UserReg',
+      component: resolve => (require(["@/view/components/UserReg"], resolve)),
+      //每一个加上meta用于导航栏遍历避免报错
+      meta: {
+        title: '注册页面',
+        icon: 'el-icon-s-home',
+        // false为显示,true为不显示
+        hidden: true,
+      },
+    },
+    {
       path: '/RecursiveMenu',
       name: 'RecursiveMenu',
       component: resolve => (require(["@/view/components/fream/RecursiveMenu"], resolve)),

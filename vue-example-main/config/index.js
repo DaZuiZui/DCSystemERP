@@ -7,28 +7,35 @@ const path = require('path')
 module.exports = {
   dev: {
     proxyTable: {
-      '/api/hello': {
-        target: 'http://192.168.0.109:8001',
+      // '/api/hello': {
+      //   target: 'http://192.168.0.109:8001',
+      //   changeOrigin: true,
+      //   pathRewrite: {
+      //     '^/api/hello': '/api/hello'
+      //   }
+      // },
+      // '/api/hi': {  // 这里是一个独立的配置对象
+      //   target: 'http://192.168.0.109:8005',
+      //   changeOrigin: true,
+      //   pathRewrite: {
+      //     '^/api/hi': '/api/hi'
+      //   }
+      // }
+      '/api': {  // 这里是一个独立的配置对象
+        target: 'http://127.0.0.1:8024',
         changeOrigin: true,
         pathRewrite: {
-          '^/api/hello': '/api/hello'
-        }
-      },
-      '/api/hi': {  // 这里是一个独立的配置对象
-        target: 'http://192.168.0.109:8005',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/api/hi': '/api/hi'
+          '^/api': '/api'
         }
       }
     },
- 
-      
- 
+
+
+
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
- 
+
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
@@ -38,7 +45,7 @@ module.exports = {
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
-    
+
     /**
      * Source Maps
      */
@@ -84,5 +91,5 @@ module.exports = {
     // Set to `true` or `false` to always turn it on or off
     bundleAnalyzerReport: process.env.npm_config_report
   },
- 
+
 }

@@ -1,75 +1,51 @@
 <template>
-    <div class="Register">
-        <div>
-            <Top></Top>
-        </div>
+    <div class="login">
+        <div class="login-box">
+            <div style="flex: 1;display: flex">
+                <img src="@/assets/green.jpg" style="width: 100%">
+            </div>
+            <div style="flex:1">
+                <el-form :model="user">
+                    <div style="font-size: 20px; font-weight: bold; text-align: center;margin-bottom:18px">
+                        欢迎注册智DCSystemERP系统账号</div>
 
-        <!-- Main content -->
-        <section>
-            <div class="container">
-                <!-- Title -->
-                <!-- Section title -->
-                <div class="row mb-5 justify-content-center text-center">
-                    <div class="col-lg-6">
+                    <el-form-item prop="username">
+                        <el-input v-model="user.username" placeholder="请输入账号"></el-input>
+                    </el-form-item>
+                    <el-form-item prop="password1">
+                        <el-input v-model="user.password1" placeholder="请输入密码"></el-input>
+                    </el-form-item>
+                    <!-- <el-form-item prop="password2">
+                        <el-input v-model="user.password2" placeholder="再次输入密码"></el-input>
+                    </el-form-item> -->
 
-                        <h2 class=" mt-4">注册您的账户</h2>
-                        <div class="mt-2">
-                            <p class="lead lh-180">Register Your Account</p>
-                        </div>
-
-                        <div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Account number</label>
-                                <input v-model="userRegisterData.username" type="email" class="form-control"
-                                    id="exampleInputEmail1" aria-describedby="emailHelp">
-                                <small id="emailHelp" class="form-text text-muted">We'll never share your account
-                                    information with anyone
-                                    else.</small>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Enter Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1"
-                                    v-model="userRegisterData.password">
-                            </div>
-
-                            <!-- <div class="form-group">
-                                <label for="exampleInputPassword1">Enter Password again</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1"
-                                    v-model="user.againPassword">
-                            </div> -->
-
-                            <button class="btn btn-primary" style="width:100%" @click="submit()">Submit</button>
-
+                    <el-form-item>
+                        <el-button @click="register" type="success">注册</el-button>
+                    </el-form-item>
+                    <div style="display: flex;">
+                        <div style="flex: 1">前往<span @click="toLogin" style="color:#0f9876;cursor: pointer">登录</span>页面
                         </div>
                     </div>
-                </div>
-
+                </el-form>
             </div>
-        </section>
-
-        <footer class="position-relative" id="footer-main">
-            <Foot></Foot>
-        </footer>
+        </div>
     </div>
 </template>
 
 <script>
-//引入api的接口文件
-// import { userRegister } from "@/api/userinfo";
-// import { reg } from "@/api/user";
-
 export default {
-    name: 'Register',
-    components: {
-        Foot, Top
-    },
+    name: 'HelloWorld',
+    // components: {
+    //   Foot, Top
+    // },
     data() {
         return {
-            userRegisterData: {
+            user: {
                 username: "",
-                password: "",
+                password1: "",
+                // password2: "",
             },
+
         }
     },
     mounted() {
@@ -77,68 +53,49 @@ export default {
     },
 
     methods: {
-        //提交登入
-        // async submit() {
-        //     // this.switchbutton = true;
-        //     //密码的重复输入正确判断
-        //     // if (this.userRegister.password !== this.user.againPassword) {
-        //     //     alert('密码设置失败');
-        //     //     return;
-        //     // }
+        toLogin() {
+            this.$router.push("/Login");
+        },
+        register() {
 
-        //     let obj = await userRegister("user/userReg", this.userRegisterData);
-        //     if (obj.code == '0x200') {
-        //         console.log(obj, 'data');
-        //         // this.$router.push("/user/login");
-        //     }
-        // },
-        submit() {
-
-            reg(this.userRegisterData).then((obj) => {
-                if (obj && obj.code === "0x200") {
-                    console.log("注册成功");
-                    alert(obj.message);
-                    this.$router.push("/user/login");
-                    this.switchbutton = false;
-                    return obj
-                    // 处理登录成功后的操作
-                } else {
-                    console.error("登录失败");
-                    alert(obj.message);
-                    this.switchbutton = false;
-                    // return
-                }
-            })
-                .catch((error) => {
-                    console.error("登录请求失败", error);
-                });;;
-
-            // this.$axios.post('/api/user/userReg', this.userRegisterData).then(res => {
-            //     console.log(res);
-            // })
         }
+
     }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1,
-h2 {
-    font-weight: normal;
+<style>
+.login {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #edf2fa
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
+.login-box {
+    display: flex;
+    background-color: #fff;
+    width: 55%;
+    border-radius: 5px;
+    overflow: hidden;
 }
 
-li {
-    display: inline-block;
-    margin: 0 10px;
+.el-form {
+    margin: 85px 15px;
+
 }
 
-a {
-    color: #42b983;
+.s-canvas {
+    display: flex;
+    justify-content: center;
+}
+
+.el-button--success {
+    color: #FFF;
+    background-color: rgba(15, 152, 220) !important;
+    border-color: rgba(15, 152, 220) !important;
+    cursor: pointer;
+    margin-top: 16px;
+    width: 100%
 }
 </style>

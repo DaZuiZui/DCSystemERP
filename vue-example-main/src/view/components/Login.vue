@@ -1,74 +1,54 @@
 <template>
   <div class="hello">
-    <div>
-      <Top></Top>
-    </div>
 
-    <!-- Main content -->
-    <section>
-      <div class="container">
-        <!-- Title -->
-        <!-- Section title -->
-        <div class="row mb-5 justify-content-center text-center">
-          <div class="col-lg-6">
-
-            <h2 class=" mt-4">登入您的账户</h2>
-            <div class="mt-2">
-              <p class="lead lh-180">Login Your Account</p>
-            </div>
-
-            <div>
-              <div class="form-group">
-                <label for="exampleInputEmail1">Username</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                  v-model="userLoginBo.username">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                  else.</small>
-              </div>
-              <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" v-model="userLoginBo.passwd">
-              </div>
-              <div class="form-group form-check">
-
-              </div>
-              <button class="btn btn-primary" style="width:100%" @click="submit()"
-                :disabled="switchbutton">Submit</button>
-
-            </div>
-          </div>
+    <div class="login">
+      <div class="login-box">
+        <div style="flex: 1;display: flex">
+          <img src="@/assets/blue.jpg" style="width: 100%">
         </div>
+        <div style="flex:1">
+          <el-form :model="userLoginBo">
+            <div style="font-size: 20px; font-weight: bold; text-align: center;margin-bottom:18px">DCSystemERP系统</div>
 
+            <el-form-item prop="username">
+              <el-input prefix-icon="el-icon-user" size="medium" v-model="userLoginBo.username"
+                placeholder="请输入账号"></el-input>
+            </el-form-item>
+            <el-form-item prop="password">
+              <el-input prefix-icon="el-icon-lock" show-password size="medium" v-model="userLoginBo.passwd"
+                placeholder="请输入密码"></el-input>
+            </el-form-item>
+
+
+            <el-form-item>
+              <el-button @click="login()" style="margin-top:16px;width: 100%">登录</el-button>
+            </el-form-item>
+
+          </el-form>
+        </div>
       </div>
-    </section>
-
-    <footer class="position-relative" id="footer-main">
-      <Foot></Foot>
-    </footer>
+    </div>
   </div>
 </template>
 
 <script>
-// import Foot from '../frame/Foot.vue';
-// import Top  from '../frame/LoginTop.vue'
-import { synRequestPost, synRequestGet } from "../../../../static/request"
-import { login } from "@/api/user";
-import { setCookie } from "../../../../static/ZuiBlog/ZuiBlog";
+// import { synRequestPost, synRequestGet } from "../../../../static/request"
+// import { login } from "@/api/user";
+// import { setCookie } from "../../../../static/ZuiBlog/ZuiBlog";
 
 
 export default {
   name: 'HelloWorld',
-  components: {
-    Foot, Top
-  },
+  // components: {
+  //   Foot, Top
+  // },
   data() {
     return {
       userLoginBo: {
         username: "",
         passwd: "",
       },
-      //按钮开关
-      switchbutton: false,
+
     }
   },
   mounted() {
@@ -77,7 +57,7 @@ export default {
 
   methods: {
     //提交登入
-    async submit() {
+    async login() {
       this.switchbutton = true;
       const object = login(this.userLoginBo)
         .then((obj) => {
@@ -108,22 +88,42 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1,
-h2 {
-  font-weight: normal;
+.login {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #edf2fa
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
+.login-box {
+  display: flex;
+  background-color: #fff;
+  width: 50%;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
-li {
-  display: inline-block;
-  margin: 0 10px;
+.el-form {
+  margin: 85px 15px;
+
 }
 
-a {
-  color: #42b983;
+.s-canvas {
+  display: flex;
+  justify-content: center;
+}
+
+.validCode {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  margin-top: 1px;
+
+}
+
+.el-button--default {
+  background-color: #bdebe0 !important;
+  border-color: #46eac2 !important;
 }
 </style>
