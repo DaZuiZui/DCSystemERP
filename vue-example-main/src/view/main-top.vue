@@ -5,8 +5,10 @@
 -->
 <template>
     <div class="topstyle">
-        <el-link @click="loginBtn" type="primary">登录</el-link>
-        <el-link @click="registerBtn" type="success">注册</el-link>
+        <div class="content">
+            <el-link @click="loginBtn" type="primary">登录</el-link>
+            <el-link @click="registerBtn" type="success">注册</el-link>
+        </div>
     </div>
 </template>
 
@@ -44,6 +46,11 @@ export default {
     width: 100%;
     /* background-color: pink; */
     text-align: right;
+}
+
+.topstyle .content {
+    width: 90%;
+    /* background-color: skyblue; */
 }
 
 .el-divider__text,

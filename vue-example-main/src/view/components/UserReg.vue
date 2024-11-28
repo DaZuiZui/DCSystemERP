@@ -12,8 +12,8 @@
                     <el-form-item prop="username">
                         <el-input v-model="user.username" placeholder="请输入账号"></el-input>
                     </el-form-item>
-                    <el-form-item prop="password1">
-                        <el-input v-model="user.password1" placeholder="请输入密码"></el-input>
+                    <el-form-item prop="password">
+                        <el-input v-model="user.password" placeholder="请输入密码"></el-input>
                     </el-form-item>
                     <!-- <el-form-item prop="password2">
                         <el-input v-model="user.password2" placeholder="再次输入密码"></el-input>
@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import { Register } from "@/api/user";
 export default {
     name: 'HelloWorld',
     // components: {
@@ -42,7 +43,7 @@ export default {
         return {
             user: {
                 username: "",
-                password1: "",
+                password: "",
                 // password2: "",
             },
 
@@ -56,7 +57,13 @@ export default {
         toLogin() {
             this.$router.push("/Login");
         },
-        register() {
+        async register() {
+
+            const result = await Register(this.user)
+            if (result.data.code == '0x200') {
+                this.$router.push('/Login')
+                // console.log(result, "result");
+            }
 
         }
 

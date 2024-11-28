@@ -21,7 +21,7 @@
 
 
             <el-form-item>
-              <el-button @click="login()" style="margin-top:16px;width: 100%">登录</el-button>
+              <el-button @click="loginbtn()" style="margin-top:16px;width: 100%">登录</el-button>
             </el-form-item>
 
           </el-form>
@@ -32,9 +32,9 @@
 </template>
 
 <script>
-// import { synRequestPost, synRequestGet } from "../../../../static/request"
-// import { login } from "@/api/user";
-// import { setCookie } from "../../../../static/ZuiBlog/ZuiBlog";
+import { SET_TOKEN } from '@/utils/cookie'
+import { login } from "@/api/user";
+
 
 
 export default {
@@ -56,34 +56,17 @@ export default {
   },
 
   methods: {
-    //提交登入
-    async login() {
-      this.switchbutton = true;
-      const object = login(this.userLoginBo)
-        .then((obj) => {
-          if (obj && obj.code === "0x200") {
-            console.log("登录成功", obj.data);
-            setCookie("token", obj.data);
-            setCookie("role", obj.role);
-            alert(obj.message);
-            this.$router.push("/form");
-            this.switchbutton = false;
-            return obj
-            // 处理登录成功后的操作
-          } else {
-            console.error("登录失败", obj.message);
-            alert(obj.message);
-            this.switchbutton = false;
-            // return
-          }
-        })
-        .catch((error) => {
-          console.error("登录请求失败", error);
-        });;
-
-    },
+    async loginbtn() {
+      const result = await login(this.userLoginBo)
+      if (result.data.code == '0x200') {
+        SET_TOKEN(result.data.data)
+        console.log(result, "result");
+        this.$router.push('/')
+      }
+    }
   }
 }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

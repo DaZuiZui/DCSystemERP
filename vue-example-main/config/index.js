@@ -22,10 +22,11 @@ module.exports = {
       //   }
       // }
       '/api': {  // 这里是一个独立的配置对象
+        // target: 'http://127.0.0.1:8024',
         target: 'http://127.0.0.1:8024',
         changeOrigin: true,
         pathRewrite: {
-          '^/api': '/api'
+          '^/api': ''
         }
       }
     },
