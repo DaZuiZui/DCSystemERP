@@ -72,7 +72,7 @@ public class UserController {
      *      分页查询用户列表
      * @return
      */
-    @PostMapping("/queryPageUser")
+    @PostMapping("/queryPageUser ")
     @ApiOperation("分页查询用户列表")
     public String queryPageUser(@RequestBody UserPageBo userPageBo){
         return JSONArray.toJSONString(userService.queryPageUser(userPageBo));

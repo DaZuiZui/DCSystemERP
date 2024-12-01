@@ -4,7 +4,7 @@
  *         y51288033@gmail.com
  */
 import axios from 'axios'
- 
+import { GET_TOKEN } from '@/utils/cookie'
 
 /**
  * withCredentials: true: 表示允许发送跨域请求时携带凭据（比如 cookies、HTTP 认证信息等）。
@@ -15,19 +15,19 @@ import axios from 'axios'
 axios.defaults.withCredentials = true
 
 const http = axios.create({
-    timeout: 1000*30,
+    timeout: 1000 * 30,
     withCredentials: true,
     headers: {
         'Content-Type': 'application/json; charset=utf-8'
     }
 })
- 
- /**
- * 请求拦截
- * @param {*} params 
- * @param {*} openDefultParams 
- * @returns 
- */
+
+/**
+* 请求拦截
+* @param {*} params 
+* @param {*} openDefultParams 
+* @returns 
+*/
 http.interceptors.request.use(config => {
     // // 根据请求路径动态设置 baseURL
     // if (config.url.startsWith('/api/hello')) {
@@ -37,7 +37,7 @@ http.interceptors.request.use(config => {
     // }
 
     //设置请求头
-    config.headers['Authorization'] = "ur token asjdb-qwneji-1231sad"
+    config.headers['Authorization'] = GET_TOKEN()
     config.headers['accept'] = '*/*'
     return config;
 })

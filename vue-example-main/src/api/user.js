@@ -34,3 +34,10 @@ export function Register(data) {
         data: data
     })
 }
+export function Pagination(data) {
+    return http({
+        url: "/api/user/queryPageUser",
+        method: "post",
+        data: data
+    })
+}

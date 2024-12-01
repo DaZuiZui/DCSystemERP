@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <Top v-if="showNavigator != '' ? false : true"></Top>
+            <Top v-if="showNavigator != '' ? true : false"></Top>
         </div>
         <div>
             <Content></Content>
