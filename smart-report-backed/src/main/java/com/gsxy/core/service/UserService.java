@@ -1,5 +1,6 @@
 package com.gsxy.core.service;
 
+import com.gsxy.core.pojo.bo.UpdateUserBo;
 import com.gsxy.core.pojo.bo.UserLoginBo;
 import com.gsxy.core.pojo.bo.UserPageBo;
 import com.gsxy.core.pojo.bo.UserRegBo;
@@ -14,4 +15,8 @@ public interface UserService {
     ResponseVo queryPageUser(UserPageBo userPageBo);
 
     ResponseVo getProfiles();
+
+    ResponseVo delete(Long id);
+
+    ResponseVo update(UpdateUserBo updateUserBo);
 }

@@ -20,6 +20,16 @@
         limit #{page},#{limit}
     </select>
 
+    <update id="delete">
+        update
+            user
+        set
+            del_flag = 1
+        where
+            id = #{id}
+        limit 1
+    </update>
+
     <select id="queryPageUserCount" resultType="java.lang.Long">
         select
             count(1)
@@ -31,7 +41,7 @@
 
     <update id="update">
         update
-        users
+        user
         <set>
             <if test="username != null">
                 username = #{username},
@@ -39,20 +49,11 @@
             <if test="password != null">
                 password = #{password},
             </if>
-            <if test="role != null">
-                role = #{role},
+            <if test="updateTime != null">
+                update_time = #{updateTime},
             </if>
-            <if test="email != null">
-                email = #{email},
-            </if>
-            <if test="phone != null">
-                phone = #{phone},
-            </if>
-            <if test="address != null">
-                address = #{address},
-            </if>
-            <if test="updatedTime != null">
-                updated_time = #{updatedTime},
+            <if test="updateBy != null">
+                update_by = #{updateBy},
             </if>
         </set>
         where

@@ -3,6 +3,7 @@ package com.gsxy.core.service.impl;
 import cn.hutool.core.lang.Console;
 import com.gsxy.core.mapper.UserMapper;
 import com.gsxy.core.pojo.Users;
+import com.gsxy.core.pojo.bo.UpdateUserBo;
 import com.gsxy.core.pojo.bo.UserLoginBo;
 import com.gsxy.core.pojo.bo.UserPageBo;
 import com.gsxy.core.pojo.bo.UserRegBo;
@@ -87,6 +88,36 @@ public class UserServiceImpl implements UserService {
     public ResponseVo getProfiles() {
         return ResponseVo.builder()
                 .data(userMapper.queryById(LoginUtils.getLoginUserId()))
+                .code(CodeValues.SUCCESS_CODE)
+                .message(MessageValues.SUCCESS_MESSAGE)
+                .build();
+    }
+
+    @Override
+    public ResponseVo delete(Long id) {
+
+        userMapper.delete(id);
+
+        return ResponseVo.builder()
+                .code(CodeValues.SUCCESS_CODE)
+                .message(MessageValues.SUCCESS_MESSAGE)
+                .build();
+    }
+
+    @Override
+    public ResponseVo update(UpdateUserBo updateUserBo) {
+
+        userMapper.update(
+                Users.builder()
+                        .id(updateUserBo.getId())
+                        .username(updateUserBo.getUsername())
+                        .password(updateUserBo.getPassword())
+                        .updateBy(LoginUtils.getLoginUserId())
+                        .updateTime(new Date())
+                        .build()
+                );
+
+        return ResponseVo.builder()
                 .code(CodeValues.SUCCESS_CODE)
                 .message(MessageValues.SUCCESS_MESSAGE)
                 .build();

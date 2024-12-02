@@ -1,6 +1,7 @@
 package com.gsxy.core.controller;
 
 import com.alibaba.fastjson2.JSONArray;
+import com.gsxy.core.pojo.bo.UpdateUserBo;
 import com.gsxy.core.pojo.bo.UserLoginBo;
 import com.gsxy.core.pojo.bo.UserPageBo;
 import com.gsxy.core.pojo.bo.UserRegBo;
@@ -76,6 +77,18 @@ public class UserController {
     @ApiOperation("分页查询用户列表")
     public String queryPageUser(@RequestBody UserPageBo userPageBo){
         return JSONArray.toJSONString(userService.queryPageUser(userPageBo));
+    }
+
+    @GetMapping("/delete/{id}")
+    @ApiOperation("逻辑删除")
+    public String delete(@PathVariable Long id){
+        return JSONArray.toJSONString(userService.delete(id));
+    }
+
+    @PostMapping("/update")
+    @ApiOperation("逻辑删除")
+    public String update(@RequestBody UpdateUserBo updateUserBo){
+        return JSONArray.toJSONString(userService.update(updateUserBo));
     }
 
     /**

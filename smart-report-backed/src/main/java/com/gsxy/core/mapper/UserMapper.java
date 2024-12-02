@@ -24,4 +24,6 @@ public interface UserMapper {
     List<UserVo> queryPageUser(UserPageBo userPageBo);
 
     Long queryPageUserCount(UserPageBo userPageBo);
+
+    void delete(Long id);
 }
