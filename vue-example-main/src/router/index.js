@@ -16,21 +16,90 @@ export const mainRouters =
       name: "home",
       component: resolve => (require(["@/view/HomeView"], resolve)),
       meta: {
-        title: '首页',
-        icon: 'el-icon-s-home'
+        title: '导航栏',
+        icon: 'el-icon-s-home',
+        hidden: false,
       },
+      redirect: "authuser",
       children: [
+        {
+          path: "authuser",
+          name: "authuser",
+          component: resolve => (require(["@/view/components/main/AuthUser"], resolve)),
+          meta: {
+            title: '用户模块',
+            icon: 'el-icon-s-home',
+            hidden: false,
+          },
+        },
+        {
+          path: "channel",
+          name: "channel",
+          component: resolve => (require(["@/view/components/main/channel"], resolve)),
+          meta: {
+            title: '通道模块',
+            icon: 'el-icon-s-home',
+            hidden: false,
+          },
+        }
+
       ],
+    },
+    {
+      path: '/Login',
+      name: 'Login',
+      component: resolve => (require(["@/view/components/Login"], resolve)),
+      //每一个加上meta用于导航栏遍历避免报错
+      meta: {
+        title: '登录页面',
+        icon: 'el-icon-s-home',
+        // false为显示,true为不显示
+        hidden: true,
+      },
+    },
+    {
+      path: '/UserReg',
+      name: 'UserReg',
+      component: resolve => (require(["@/view/components/UserReg"], resolve)),
+      //每一个加上meta用于导航栏遍历避免报错
+      meta: {
+        title: '注册页面',
+        icon: 'el-icon-s-home',
+        // false为显示,true为不显示
+        hidden: true,
+      },
+    },
+    {
+      path: '/RecursiveMenu',
+      name: 'RecursiveMenu',
+      component: resolve => (require(["@/view/components/fream/RecursiveMenu"], resolve)),
+      //每一个加上meta用于导航栏遍历避免报错
+      meta: {
+        title: '导航栏',
+        icon: 'el-icon-s-home',
+        // false为不显示,true为显示
+        hidden: true,
+      },
     },
     {
       path: '/HelloWorld',
       name: 'HelloWorld',
-      component: resolve => (require(["@/components/HelloWorld"], resolve))
+      component: resolve => (require(["@/components/HelloWorld"], resolve)),
+      meta: {
+        title: 'hello',
+        icon: 'el-icon-s-home',
+        hidden: true,
+      }
     },
     {
       path: '/userindex',
       name: 'userindex',
-      component: resolve => (require(["@/view/modules/user/index"], resolve))
+      component: resolve => (require(["@/view/modules/user/index"], resolve)),
+      meta: {
+        title: 'userindex',
+        icon: 'el-icon-s-home',
+        hidden: true,
+      }
     }
   ]
 

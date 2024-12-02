@@ -3,7 +3,7 @@
    @email: 1017850280@qq.com
 -->
 <template>
-    <div id="app">
+    <div>
         <div class="content">
 
             <div class="Left_content">
@@ -21,7 +21,7 @@ import RecursiveMenu from "@/view/components/fream/RecursiveMenu.vue";
 import router, { mainRouters } from '@/router/index.js';
 export default {
 
-    name: 'App',
+    name: 'main-content',
     components: {
         RecursiveMenu
     },
@@ -48,16 +48,16 @@ export default {
     justify-content: center;
     width: 100%;
     height: 850px;
-    background-color: aqua;
+    /* background-color: aqua; */
 
     .Left_content {
         width: 14%;
-        background-color: pink;
+        /* background-color: pink; */
     }
 
     .Rright_content {
         width: 80%;
-        background-color: yellow;
+        /* background-color: yellow; */
     }
 
     /* el-card的样式 */
