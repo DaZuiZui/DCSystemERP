@@ -17,14 +17,21 @@
             <el-form-item prop="password">
               <el-input prefix-icon="el-icon-lock" show-password size="medium" v-model="userLoginBo.passwd"
                 placeholder="请输入密码"></el-input>
-            </el-form-item>
+            </el-form-item>  
 
 
             <el-form-item>
               <el-button @click="loginbtn()" style="margin-top:16px;width: 100%">登录</el-button>
             </el-form-item>
-
+                   <div style="display: flex;">
+                        <div style="flex: 1">前往<span style="color:#74b0f0;">
+                           <router-link to="/UserReg">注册</router-link> 
+                          </span>
+                          页面
+                        </div>
+                    </div>
           </el-form>
+           
         </div>
       </div>
     </div>
