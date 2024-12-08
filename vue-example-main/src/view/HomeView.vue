@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <Top v-if="showNavigator != '' ? true : false"></Top>
+            <Top v-if="showNavigator != null ? false : true"></Top>
         </div>
         <div>
             <Content></Content>
@@ -31,7 +31,7 @@ export default {
 
     },
     mounted() {
-        // console.log(this.showNavigator, 'showNavigator');
+        console.log(this.showNavigator, 'showNavigator');
     }
 
 }

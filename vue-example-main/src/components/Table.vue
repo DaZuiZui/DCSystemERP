@@ -1,11 +1,8 @@
 <template>
     <!-- 表格的数据 -->
-    <el-table>
-        <!-- <template #empty>
-            <el-empty description="暂无数据" />
-        </template> -->
-        <el-table-column v-for="filed in columns" :key="filed.prop" v-bind="filed">
-            <template v-if="filed.prop && $slots[filed.prop]" #default="scope">
+    <el-table :data="data">
+        <el-table-column v-for="filed in PropsData" :key="filed.prop" v-bind="filed">
+            <template v-if="filed.prop && $scopedSlots[filed.prop]" #default="scope">
                 <slot :name="filed.prop" :row="scope.row" />
             </template>
         </el-table-column>
@@ -16,15 +13,22 @@ export default {
     name: 'Table',
     data() {
         return {
-
+            PropsData: this.columns
         }
     },
     props: {
         columns: {
             type: Array,
             default: () => []
+        },
+        data: {
+            type: Array,
+            default: () => []
         }
     },
+    mounted() {
+        console.log(this.columns, '接受到的数据父类数据')
+    }
 
 }
 </script>

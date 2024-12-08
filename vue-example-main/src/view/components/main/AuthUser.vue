@@ -4,7 +4,11 @@
 -->
 <template>
     <div>
-        <Table :data="tableData" :columns="TABLECOLUMN"></Table>
+        <Table :data="tableData" :columns="TABLECOLUMN">
+            <template slot-scope="{row}" slot="action">
+                <el-button type="primary" size="mini" @click="handleEdit(row)">编辑</el-button>
+            </template>
+        </Table>
         <Pagenation :total="countPage" :nowpage="userPage.page" :limit="userPage.limit" @page_change="pageChange">
         </Pagenation>
     </div>
@@ -26,7 +30,7 @@ export default {
             tableData: [],
             userPage: {
                 page: 1,
-                limit: 10
+                limit: 5
             },
             TABLECOLUMN: [
                 {
@@ -36,17 +40,12 @@ export default {
                 },
                 {
                     label: '创建人',
-                    prop: 'createdByText',
+                    prop: 'password',
                     width: 200
                 },
                 {
                     label: '权限名字',
-                    prop: 'name',
-                    width: 200
-                },
-                {
-                    label: '创建时间',
-                    prop: 'createdTime',
+                    prop: 'username',
                     width: 200
                 },
                 {
@@ -59,19 +58,25 @@ export default {
     },
 
     mounted() {
-        this.pageChange()
+        this.pageChange(1)
     },
 
     methods: {
-        async pageChange(pager = 1) {
+        async pageChange(pager) {
             //当前页码器的页码
             this.userPage.page = pager;
             const result = await Pagination(this.userPage)
-            // if (result.data.code == '0x200') {
-
-            console.log(result, "result");
-            // }
-        }
+            if (result.data.code == '0x200') {
+                this.tableData = result.data.data;
+                this.countPage = result.data.count;
+                console.log(this.tableData, "result");
+            }
+        },
+        //修改的按钮
+        handleEdit(row) {
+            console.log(row.id);
+            // this.$emit('edit', row);
+        },
 
     }
 }
