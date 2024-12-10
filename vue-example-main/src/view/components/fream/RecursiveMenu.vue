@@ -61,7 +61,7 @@ export default {
     RecursiveMenu: resolve => require(['./RecursiveMenu.vue'], resolve) // 递归调用自身
   },
   mounted() {
-    console.log(this.routes, '子组件接受父传递的路由数据');
+    // console.log(this.routes, '子组件接受父传递的路由数据');
   },
   methods: {
     //点击菜单的回调

@@ -27,7 +27,7 @@ export default {
         }
     },
     mounted() {
-        console.log(this.columns, '接受到的数据父类数据')
+        // console.log(this.columns, '接受到的数据父类数据')
     }
 
 }

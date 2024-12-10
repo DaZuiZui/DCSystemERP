@@ -31,7 +31,7 @@ export default {
 
     },
     mounted() {
-        console.log(this.showNavigator, 'showNavigator');
+        // console.log(this.showNavigator, 'showNavigator');
     }
 
 }

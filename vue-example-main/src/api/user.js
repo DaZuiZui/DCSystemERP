@@ -41,3 +41,17 @@ export function Pagination(data) {
         data: data
     })
 }
+export function FixUser(data) {
+    return http({
+        url: "/api/user/update",
+        method: "post",
+        data: data
+    })
+}
+export function DeleteUser(data) {
+    return http({
+        url: `/api/user/delete/${data}`,
+        method: "get",
+        // data: data
+    })
+}

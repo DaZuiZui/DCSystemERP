@@ -32,8 +32,8 @@ export default {
     },
 
     mounted() {
-        console.log(mainRouters,
-            '父组件已从router获取路由数据');
+        // console.log(mainRouters,
+        //     '父组件已从router获取路由数据');
     },
 
     methods: {
